@@ -6,6 +6,8 @@ import { AppCacheProvider } from "@mui/material-nextjs/v15-pagesRouter";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 
+import { DefaultLayout } from "~/layouts/DefaultLayout";
+
 const theme = createTheme();
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -18,7 +20,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ThemeProvider theme={theme}>
-        <Component {...pageProps} />
+        <DefaultLayout>
+          <Component {...pageProps} />
+        </DefaultLayout>
         <CssBaseline />
       </ThemeProvider>
     </AppCacheProvider>
