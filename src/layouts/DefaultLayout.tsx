@@ -18,7 +18,7 @@ export const DefaultLayout: FC<DefaultLayoutProps> = ({ children }) => {
         }}
       >
         <Toolbar>
-          <Typography>Pages routerのSSG検証</Typography>
+          <Typography>Pages RouterのSSG検証</Typography>
         </Toolbar>
       </AppBar>
       <Drawer
