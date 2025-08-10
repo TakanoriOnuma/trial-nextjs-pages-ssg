@@ -3,6 +3,7 @@ import {
   DocumentHeadTags,
   documentGetInitialProps,
 } from "@mui/material-nextjs/v15-pagesRouter";
+import { createMyEmotionCache } from "~/createMyEmotionCache";
 
 export default function Document(
   props: Awaited<ReturnType<typeof Document.getInitialProps>>
@@ -21,6 +22,8 @@ export default function Document(
 }
 
 Document.getInitialProps = async (ctx: DocumentContext) => {
-  const finalProps = await documentGetInitialProps(ctx);
+  const finalProps = await documentGetInitialProps(ctx, {
+    emotionCache: createMyEmotionCache(),
+  });
   return finalProps;
 };
