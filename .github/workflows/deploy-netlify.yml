@@ -33,6 +33,9 @@ jobs:
       - name: Next.js SSG
         run: npm run generate
 
+      - name: copy _redirects
+        run: cp _redirects out/_redirects
+
       - name: Set GitHub Deployment Environment
         id: github_deployment_environment
         run: |
