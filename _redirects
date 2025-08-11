@@ -1,2 +1,2 @@
 # Netlifyのリライト設定
-/dynamic/:id/ /dynamic/%5Bid%5D/index.html 200
+/dynamic/:id/ /dynamic/[id]/index.html 200
