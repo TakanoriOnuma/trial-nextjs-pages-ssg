@@ -49,7 +49,7 @@ jobs:
         run: |
           NAME="deploy-preview-${{ github.event.pull_request.number }}"
           echo "name=${NAME}" >> $GITHUB_OUTPUT
-          echo "url=https://${NAME}--trial-nextjs-pages-ssg-workers.numa-san-1024.workers.dev" >> $GITHUB_OUTPUT
+          echo "url=https://${NAME}-trial-nextjs-pages-ssg-workers.numa-san-1024.workers.dev" >> $GITHUB_OUTPUT
 
       - name: Deploy to Cloudflare Workers In Preview Mode
         if: ${{ github.event_name == 'pull_request' }}
@@ -58,7 +58,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: "versions upload --preview-alias ${{ steps.alias.outputs.name }}-"
+          command: "versions upload --preview-alias ${{ steps.alias.outputs.name }}"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "4.28.1"
 
