@@ -1,0 +1,13 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm install",
+  "buildCommand": "npm run generate",
+  "outputDirectory": "out",
+  "rewrites": [
+    {
+      "source": "/dynamic/:id/",
+      "destination": "/dynamic/[id]/index.html"
+    }
+  ]
+}
