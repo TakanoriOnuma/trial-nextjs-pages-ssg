@@ -58,7 +58,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: "versions upload --preview-alias ${{ steps.alias.outputs.host }}"
+          command: "versions upload --preview-alias deploy-preview-${{ github.event.pull_request.number }}"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "4.28.1"
 
