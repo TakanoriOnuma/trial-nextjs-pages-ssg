@@ -28,12 +28,6 @@ jobs:
           node-version-file: "package.json"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Next.js SSG
-        run: npm run generate
-
       # Vercelへのデプロイ作業
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -41,9 +35,12 @@ jobs:
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=${{ github.event_name == 'pull_request' && 'preview' || 'production' }} --token=${{ secrets.VERCEL_AUTH_TOKEN }}
 
+      - name: Build Project Artifacts
+        run: vercel build ${{ github.event_name == 'push' && '--prod' || '' }} --token=${{ secrets.VERCEL_AUTH_TOKEN }}
+
       - name: Deploy Project Artifacts to Vercel
         id: deploy
-        run: echo "url=$(vercel deploy ./out ${{ github.event_name == 'push' && '--prod' || '' }} --token=${{ secrets.VERCEL_AUTH_TOKEN }})" >> $GITHUB_OUTPUT
+        run: echo "url=$(vercel deploy --prebuilt ${{ github.event_name == 'push' && '--prod' || '' }} --token=${{ secrets.VERCEL_AUTH_TOKEN }})" >> $GITHUB_OUTPUT
 
       - name: Alias Deployment URL
         if: ${{ github.event_name == 'pull_request' }}
