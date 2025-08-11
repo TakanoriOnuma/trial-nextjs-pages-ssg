@@ -1,13 +1,13 @@
 export default {
   async fetch(request, env, ctx) {
     // リライトの設定
-    // const url = new URL(request.url);
-    // const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
+    const url = new URL(request.url);
+    const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
 
-    // if (match) {
-    //   url.pathname = `/dynamic/[id]/index.html`;
-    //   return env.ASSETS.fetch(new Request(url, request));
-    // }
+    if (match) {
+      url.pathname = `/dynamic/[id]/index.html`;
+      return env.ASSETS.fetch(new Request(url, request));
+    }
 
     // デフォルトは静的アセット返す
     const res = await env.ASSETS.fetch(request);
