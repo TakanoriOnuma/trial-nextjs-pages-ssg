@@ -1,2 +1,5 @@
-# Netlifyのリライト設定
+# Netlify のリライト設定
+
 /dynamic/:id/ /dynamic/[id]/index.html 200
+
+* /404.html 404
