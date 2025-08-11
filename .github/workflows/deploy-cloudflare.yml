@@ -34,7 +34,9 @@ jobs:
         run: npm run generate
 
       - name: Copy _redirects
-        run: cp -r _redirects out/public/_redirects
+        run: |
+          mkdir -p out/public
+          cp _redirects out/public/
 
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
