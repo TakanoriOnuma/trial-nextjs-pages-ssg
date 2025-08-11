@@ -5,7 +5,7 @@ export default {
     const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
 
     if (match) {
-      url.pathname = `/dynamic/[${match[1]}]/index.html`;
+      url.pathname = `/dynamic/[id]/index.html`;
       return new Request(url, request);
     }
 
