@@ -6,7 +6,7 @@ export default {
 
     if (match) {
       url.pathname = `/dynamic/[id]/index.html`;
-      return new Request(url, request);
+      return env.ASSETS.fetch(new Request(url, request));
     }
 
     // デフォルトは静的アセット返す
