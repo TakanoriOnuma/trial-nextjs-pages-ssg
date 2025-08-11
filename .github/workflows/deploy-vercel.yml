@@ -55,7 +55,7 @@ jobs:
         uses: thollander/actions-comment-pull-request@v3
         with:
           message: |
-            Deployed to Vercel
+            🚀 Deployed to Vercel
             Preview URL: ${{ steps.alias.outputs.url }}
-            Deployment URL: ${{ steps.deploy.outputs.url }}
+            <sub>Deployment URL: ${{ steps.deploy.outputs.url }}</sub>
           comment-tag: "vercel-deployment"
