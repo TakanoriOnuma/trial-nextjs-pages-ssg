@@ -60,6 +60,17 @@ const HomePage: FC = () => {
             https://trial-nextjs-pages-ssg.vercel.app/
           </MuiLink>
         </li>
+        <li>
+          Cloudflare
+          <br />
+          <MuiLink
+            href="https://trial-nextjs-pages-ssg.pages.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://trial-nextjs-pages-ssg.pages.dev/
+          </MuiLink>
+        </li>
       </ul>
     </Box>
   );
