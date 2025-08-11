@@ -1,8 +1,8 @@
 # Netlifyのリライト設定
-/dynamic/:id/ /dynamic/[id]/index.html 200
-/dynamic/*/ /dynamic/[id]/index.html 200
-/dynamic/* /dynamic/[id]/index.html 200
-/page3/ /page1/index.html 200
+/dynamic/:id/ /dynamic/[id]/index.html
+/dynamic/*/ /dynamic/[id]/index.html
+/dynamic/* /dynamic/[id]/index.html
+/page3/ /page1/index.html
 
 # トップにfallbackを設定
-* /index.html 200
+/* /index.html 200
