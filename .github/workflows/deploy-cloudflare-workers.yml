@@ -33,6 +33,9 @@ jobs:
       - name: Next.js SSG
         run: npm run generate
 
+      - name: copy _redirects
+        run: cp _redirects out/_redirects
+
       - name: Deploy to Cloudflare Workers In Production Mode
         if: ${{ github.event_name == 'push' }}
         uses: cloudflare/wrangler-action@v3
