@@ -3,6 +3,7 @@
   "framework": null,
   "installCommand": "npm install",
   "buildCommand": "npm run generate",
+  "outputDirectory": "out",
   "rewrites": [
     {
       "source": "/page1/",
