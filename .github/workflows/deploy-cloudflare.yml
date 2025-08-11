@@ -36,6 +36,9 @@ jobs:
       - name: Copy _redirects
         run: cp _redirects out/
 
+      - name: Copy _routes
+        run: cp _routes.json out/
+
       - name: Deploy to Cloudflare
         uses: cloudflare/wrangler-action@v3
         with:
