@@ -45,6 +45,7 @@ jobs:
 
       - name: Deploy to Cloudflare Workers In Preview Mode
         if: ${{ github.event_name == 'pull_request' }}
+        id: deploy-preview
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -52,3 +53,12 @@ jobs:
           command: "versions upload"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "4.28.1"
+
+      - name: Comment Preview URL
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            🚀 Deployed to Cloudflare Workers
+            Preview URL: ${{ steps.deploy-preview.outputs.pages-deployment-alias-url }}
+            <sub>Deployment URL: ${{ steps.deploy-preview.outputs.deployment-url }}</sub
