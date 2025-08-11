@@ -1,0 +1,43 @@
+name: Deploy to Cloudflare Workers
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+  statuses: write
+  deployments: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: "package.json"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Next.js SSG
+        run: npm run generate
+
+      - name: Deploy to Cloudflare Workers
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: "versions upload"
+          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
