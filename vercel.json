@@ -6,11 +6,7 @@
   "outputDirectory": "out",
   "rewrites": [
     {
-      "source": "/page1/",
-      "destination": "/page2/index.html"
-    },
-    {
-      "source": "/dynamic/(.*)",
+      "source": "/dynamic/:id/",
       "destination": "/dynamic/[id]/index.html"
     }
   ]
