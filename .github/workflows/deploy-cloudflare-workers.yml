@@ -70,3 +70,4 @@ jobs:
             🚀 Deployed to Cloudflare Workers
             Preview URL: ${{ steps.alias.outputs.url }}
             <sub>Deployment URL: ${{ steps.deploy-preview.outputs.deployment-url }}</sub>
+          comment-tag: "cloudflare-workers-deployment"
