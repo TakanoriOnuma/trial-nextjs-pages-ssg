@@ -1,5 +1,6 @@
 {
   "name": "trial-nextjs-pages-ssg-workers",
+  "main": "worker.js",
   "compatibility_date": "2025-08-11",
   "assets": {
     "directory": "out",
