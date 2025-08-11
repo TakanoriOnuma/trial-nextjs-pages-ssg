@@ -5,7 +5,7 @@
   "buildCommand": "npm run generate",
   "rewrites": [
     {
-      "source": "/dynamic/:id",
+      "source": "/dynamic/(.*)",
       "destination": "/dynamic/[id]/index.html"
     }
   ]
