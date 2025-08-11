@@ -47,9 +47,9 @@ jobs:
         if: ${{ github.event_name == 'pull_request' }}
         id: alias
         run: |
-          ALIAS="deploy-preview-${{ github.event.pull_request.number }}--trial-nextjs-pages-ssg.workers.dev"
-          echo "host=${ALIAS}" >> $GITHUB_OUTPUT
-          echo "url=https://${ALIAS}" >> $GITHUB_OUTPUT
+          NAME="deploy-preview-${{ github.event.pull_request.number }}"
+          echo "name=${NAME}" >> $GITHUB_OUTPUT
+          echo "url=https://${NAME}--trial-nextjs-pages-ssg-workers.numa-san-1024.workers.dev" >> $GITHUB_OUTPUT
 
       - name: Deploy to Cloudflare Workers In Preview Mode
         if: ${{ github.event_name == 'pull_request' }}
@@ -58,7 +58,7 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: "versions upload --preview-alias deploy-preview-${{ github.event.pull_request.number }}"
+          command: "versions upload --preview-alias ${{ steps.alias.outputs.name }}-"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
           wranglerVersion: "4.28.1"
 
@@ -68,5 +68,5 @@ jobs:
         with:
           message: |
             🚀 Deployed to Cloudflare Workers
-            Preview URL: ${{ steps.deploy-preview.outputs.pages-deployment-alias-url }}
+            Preview URL: ${{ steps.alias.outputs.url }}
             <sub>Deployment URL: ${{ steps.deploy-preview.outputs.deployment-url }}</sub>
