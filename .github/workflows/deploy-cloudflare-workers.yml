@@ -41,3 +41,4 @@ jobs:
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: "versions upload"
           gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+          wranglerVersion: "4.28.1"
