@@ -8,10 +8,13 @@ export default {
       url.pathname = `/dynamic/[id]/index.html`;
       const assetRes = await env.ASSETS.fetch(new Request(url, request));
 
+      const headers = new Headers(assetRes.headers);
+      headers.delete("Location"); // リダイレクトヘッダーを削除
+
       // ヘッダーとボディだけ返す
       return new Response(assetRes.body, {
-        status: assetRes.status,
-        headers: assetRes.headers,
+        status: assetRes.ok ? 200 : assetRes.status,
+        headers,
       });
     }
 
