@@ -6,7 +6,13 @@ export default {
 
     if (match) {
       url.pathname = `/dynamic/[id]/index.html`;
-      return env.ASSETS.fetch(new Request(url, request));
+      const assetRes = await env.ASSETS.fetch(new Request(url, request));
+
+      // ヘッダーとボディだけ返す
+      return new Response(assetRes.body, {
+        status: assetRes.status,
+        headers: assetRes.headers,
+      });
     }
 
     // デフォルトは静的アセット返す
