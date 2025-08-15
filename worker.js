@@ -10,15 +10,14 @@ class Worker extends WorkerEntrypoint {
       url.pathname = `/dynamic/[id]/index.html`;
       const assetRes = await this.env.ASSETS.fetch(new Request(url, request));
 
-      return assetRes;
-      // const headers = new Headers(assetRes.headers);
-      // headers.delete("Location"); // リダイレクトヘッダーを削除
+      const headers = new Headers(assetRes.headers);
+      headers.delete("Location"); // リダイレクトヘッダーを削除
 
-      // // ヘッダーとボディだけ返す
-      // return new Response(assetRes.body, {
-      //   status: assetRes.ok ? 200 : assetRes.status,
-      //   headers,
-      // });
+      // ヘッダーとボディだけ返す
+      return new Response(assetRes.body, {
+        status: assetRes.ok ? 200 : assetRes.status,
+        headers,
+      });
     }
 
     // デフォルトは静的アセット返す
