@@ -8,6 +8,7 @@ class Worker extends WorkerEntrypoint<Env> {
 
     if (match) {
       const assetUrl = new URL("/dynamic/[id]/index.html", request.url);
+      // toStringで渡すことでリクエスト元と比較されなくなり、リダイレクトせずに静的アセットを返してくれる
       return this.env.ASSETS.fetch(assetUrl.toString());
     }
 
