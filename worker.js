@@ -9,6 +9,7 @@ class Worker extends WorkerEntrypoint {
     if (match) {
       url.pathname = `/dynamic/[id]/index.html`;
       const assetRes = await this.env.ASSETS.fetch(url.toString());
+      return assetRes;
 
       const headers = new Headers(assetRes.headers);
       headers.delete("Location"); // リダイレクトヘッダーを削除
