@@ -61,6 +61,17 @@ const HomePage: FC = () => {
           </MuiLink>
         </li>
         <li>
+          Cloudflare Workers
+          <br />
+          <MuiLink
+            href="https://trial-nextjs-pages-ssg-workers.numa-san-1024.workers.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            https://trial-nextjs-pages-ssg-workers.numa-san-1024.workers.dev/
+          </MuiLink>
+        </li>
+        <li>
           Firebase Hosting
           <br />
           <MuiLink
