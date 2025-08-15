@@ -9,9 +9,8 @@ class Worker extends WorkerEntrypoint {
     if (match) {
       // url.pathname = `/dynamic/[id]/index.html`;
       // const assetRes = await this.env.ASSETS.fetch(url.toString());
-      const assetRes = await this.env.ASSETS.fetch(
-        new URL("/dynamic/[id]/index.html", request.url)
-      );
+      const assetUrl = new URL("/dynamic/[id]/index.html", request.url);
+      const assetRes = await this.env.ASSETS.fetch(assetUrl.toString());
       return assetRes;
 
       const headers = new Headers(assetRes.headers);
