@@ -10,7 +10,7 @@ class Worker extends WorkerEntrypoint {
       // url.pathname = `/dynamic/[id]/index.html`;
       // const assetRes = await this.env.ASSETS.fetch(url.toString());
       const assetRes = await this.env.ASSETS.fetch(
-        new Request(new URL("/dynamic/[id]/index.html", request.url), request)
+        new URL("/dynamic/[id]/index.html", request.url)
       );
       return assetRes;
 
