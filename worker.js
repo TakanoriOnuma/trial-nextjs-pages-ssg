@@ -7,8 +7,11 @@ class Worker extends WorkerEntrypoint {
     const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
 
     if (match) {
-      url.pathname = `/dynamic/[id]/index.html`;
-      const assetRes = await this.env.ASSETS.fetch(url.toString());
+      // url.pathname = `/dynamic/[id]/index.html`;
+      // const assetRes = await this.env.ASSETS.fetch(url.toString());
+      const assetRes = await this.env.ASSETS.fetch(
+        new Request(new URL("/dynamic/[id]/index.html", request.url), request)
+      );
       return assetRes;
 
       const headers = new Headers(assetRes.headers);
