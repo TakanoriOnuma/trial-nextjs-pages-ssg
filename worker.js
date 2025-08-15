@@ -1,14 +1,14 @@
 import { WorkerEntrypoint } from "cloudflare:workers";
 
 class Worker extends WorkerEntrypoint {
-  async fetch(request, env, ctx) {
+  async fetch(request) {
     // リライトの設定
     const url = new URL(request.url);
     const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
 
     if (match) {
       url.pathname = `/dynamic/[id]/index.html`;
-      const assetRes = await env.ASSETS.fetch(new Request(url, request));
+      const assetRes = await this.env.ASSETS.fetch(new Request(url, request));
 
       return assetRes;
       // const headers = new Headers(assetRes.headers);
@@ -22,12 +22,12 @@ class Worker extends WorkerEntrypoint {
     }
 
     // デフォルトは静的アセット返す
-    const res = await env.ASSETS.fetch(request);
+    const res = await this.env.ASSETS.fetch(request);
 
     // リクエストされたURLが存在しない場合は404ページを返す
     if (res.status === 404) {
       // 404.html を Assets から取得
-      const notFoundRes = await env.ASSETS.fetch(
+      const notFoundRes = await this.env.ASSETS.fetch(
         new Request(new URL("/404.html", request.url), request)
       );
 
