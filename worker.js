@@ -24,7 +24,7 @@ class Worker extends WorkerEntrypoint {
     }
 
     // デフォルトは静的アセット返す
-    const res = await this.env.ASSETS.fetch(request);
+    return this.env.ASSETS.fetch(request);
 
     // リクエストされたURLが存在しない場合は404ページを返す
     if (res.status === 404) {
