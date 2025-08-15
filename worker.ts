@@ -3,7 +3,9 @@ import { WorkerEntrypoint } from "cloudflare:workers";
 class Worker extends WorkerEntrypoint<Env> {
   async fetch(request: Request) {
     // リライトの設定
-    const match = request.url.match(/^\/dynamic\/([^/]+)\/?$/);
+    const url = new URL(request.url);
+    const match = url.pathname.match(/^\/dynamic\/([^/]+)\/?$/);
+
     if (match) {
       const assetUrl = new URL("/dynamic/[id]/index.html", request.url);
       return this.env.ASSETS.fetch(assetUrl.toString());
